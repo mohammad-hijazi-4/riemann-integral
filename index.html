@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visualize left, right, and midpoint Riemann sums for definite integrals.">
+  <title>Riemann Sum Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">Interactive calculus</p>
+    <h1>Riemann Sum Visualizer</h1>
+    <p>Approximate a definite integral and see every rectangle.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel controls" aria-labelledby="controls-title">
+      <h2 id="controls-title">Calculator</h2>
+      <form id="calculator-form">
+        <label>Function f(x)
+          <input id="function-input" value="sin(x) + 2" autocomplete="off" spellcheck="false">
+        </label>
+
+        <div class="input-row">
+          <label>Lower bound a
+            <input id="lower-input" type="number" value="0" step="any">
+          </label>
+          <label>Upper bound b
+            <input id="upper-input" type="number" value="6.283185307" step="any">
+          </label>
+        </div>
+
+        <label>Rectangles: <output id="count-output">16</output>
+          <input id="count-input" type="range" min="1" max="2000" value="16">
+        </label>
+
+        <fieldset>
+          <legend>Method</legend>
+          <label class="radio"><input type="radio" name="method" value="left"> Left</label>
+          <label class="radio"><input type="radio" name="method" value="midpoint" checked> Midpoint</label>
+          <label class="radio"><input type="radio" name="method" value="right"> Right</label>
+        </fieldset>
+
+        <button type="submit">Calculate and draw</button>
+        <p id="error-message" class="error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <details>
+        <summary>Supported syntax</summary>
+        <p>Use <code>x</code>, numbers, parentheses, <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>^</code>.</p>
+        <p>Functions: sin, cos, tan, sqrt, abs, exp, log, ln, floor, ceil. Constants: pi, e.</p>
+      </details>
+    </section>
+
+    <section class="panel visualization" aria-labelledby="graph-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Live visualization</p>
+          <h2 id="graph-title">Area approximation</h2>
+        </div>
+        <button id="download-button" class="secondary" type="button">Download PNG</button>
+      </div>
+      <canvas id="graph" width="1000" height="620" aria-label="Graph of the function and Riemann rectangles"></canvas>
+
+      <div class="results" aria-live="polite">
+        <article><span>Riemann sum</span><strong id="sum-result">—</strong></article>
+        <article><span>Numerical integral</span><strong id="integral-result">—</strong></article>
+        <article><span>Absolute error</span><strong id="error-result">—</strong></article>
+        <article><span>Rectangle width Δx</span><strong id="width-result">—</strong></article>
+      </div>
+      <p id="formula-output" class="formula"></p>
+    </section>
+  </main>
+
+  <footer>Built for students, teachers, and curious minds.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
